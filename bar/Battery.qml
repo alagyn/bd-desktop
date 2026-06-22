@@ -1,9 +1,8 @@
 import org.kde.kirigami
 import QtQuick
+import QtQuick.Layouts
 import Quickshell
 import Quickshell.Services.UPower
-import QtQuick.Layouts
-import qs.parts
 import qs
 
 BarGroup {
@@ -12,8 +11,6 @@ BarGroup {
     readonly property var battery: UPower.displayDevice
     readonly property int percentage: Math.round(battery.percentage * 100)
     visible: battery.isLaptopBattery
-
-    implicitWidth: contentItem.childrenRect.width + 20
 
     RowLayout {
         id: contentItem

@@ -123,14 +123,14 @@ WrapperMouseArea {
                                 Colors.highlight : Colors.bgSecondary;
                             }
                         }
-                        MultiEffect {
-                            source: wsRect
-                            anchors.fill: wsRect
-                            shadowEnabled: Config.shadowEnabled
-                            shadowVerticalOffset: Config.shadowVerticalOffset
-                            blurMax: Config.blurMax
-                            opacity: Config.shadowOpacity
-                        }
+                        // MultiEffect {
+                        //     source: wsRect
+                        //     anchors.fill: wsRect
+                        //     shadowEnabled: Config.shadowEnabled
+                        //     shadowVerticalOffset: Config.shadowVerticalOffset
+                        //     blurMax: Config.blurMax
+                        //     opacity: Config.shadowOpacity
+                        // }
                     }
                 }
             }

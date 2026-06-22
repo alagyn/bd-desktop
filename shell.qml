@@ -4,5 +4,5 @@ import qs.popups
 
 ShellRoot {
   Bar {}
-  Volume {}
+  VolumeOSD {}
 }

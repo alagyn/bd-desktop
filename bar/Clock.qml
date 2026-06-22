@@ -6,8 +6,6 @@ import qs.parts
 BarGroup {
     id: clockWidget
     color: Colors.bgSecondary
-    implicitWidth: child.implicitWidth + 20 
-    radius: 15
     Text {
         id: child
         color: Colors.fgLight

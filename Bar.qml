@@ -2,6 +2,7 @@ import Quickshell // for PanelWindow
 import QtQuick.Layouts
 import QtQuick // for Text
 
+import qs
 import qs.bar
 
 Scope {
@@ -20,26 +21,28 @@ Scope {
             }
 
             margins {
-                bottom: 5
-                left: 20
-                right: 20
+                bottom: Config.barBottomMargin
+                left: Config.barSideMargin
+                right: Config.barSideMargin
             }
-            implicitHeight: 46
+            implicitHeight: Config.barHeight
 
             Rectangle {
                 anchors.fill: parent
                 color: Colors.bgPrimary
-                radius: 15
+                radius: Config.barRadius
                 // Left
                 RowLayout {
                     id: leftWidgets
-                    spacing: 2
+                    spacing: Config.barWidgetSpacing
                     anchors {
                         bottom: parent.bottom
                         left: parent.left
                         top: parent.top
-                        leftMargin: Config.barWidgetSpacing
+                        leftMargin: Config.barGroupEdgeOffset
                     }
+                    Bluetooth {}
+                    Network {}
                 }
                 // Center
                 RowLayout {
@@ -55,14 +58,15 @@ Scope {
                 // Right
                 RowLayout {
                     id: rightWidgets
-                    spacing: 10
+                    spacing: Config.barWidgetSpacing
                     anchors {
                         bottom: parent.bottom
                         right: parent.right
                         top: parent.top
-                        rightMargin: Config.barWidgetSpacing
+                        rightMargin: Config.barGroupEdgeOffset
                     }
                     // TODO Brightness/Volume
+                    Tray {}
                     Battery {}
                     Clock {}
                 }

@@ -9,8 +9,14 @@ Rectangle {
     color: Colors.bgSecondary
     radius: Config.barGroupRadius
 
-    implicitWidth: contentItem.implicitWidth 
-    implicitHeight: 30
+    implicitWidth: contentItem.childrenRect.width + 15
+    implicitHeight: Config.barGroupHeight
+
+    border {
+        color: "black"
+        width: 1
+    }
+   
     Item {
         id: contentItem
         // anchors.fill: parent

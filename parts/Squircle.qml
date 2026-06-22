@@ -5,13 +5,13 @@ Item {
     id: root
 
     // Geometry
-    property real radius: Config.radius
-    property real power: Config.roundingPower
+    property real radius: 10
+    property real power: 2
 
     // Styling
     property color color: "black"
     property color strokeColor: "transparent"
-    property color innerStrokeColor: Colors.innerBorder
+    property color innerStrokeColor: Colors.bgSecondary
     property real strokeWidth: strokeColor.alpha != 0 ? 1 : 0
     property real innerStrokeWidth: 0.5
     property bool useInnerStroke: false
