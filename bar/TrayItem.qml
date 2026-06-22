@@ -32,11 +32,11 @@ MouseArea {
     Rectangle {
         id: trayIconItem
 
-        color: root.menu.visible ? Colors.highlight: root.containsMouse ? Colors.buttonDisabled : "transparent"
+        color: root.menu.visible ? Colors.highlight : root.containsMouse ? Colors.bgSecondary : "transparent"
         radius: 20
 
-        implicitWidth: trayIcon.implicitWidth + Config.menuPadding  * 2
-        implicitHeight: trayIcon.implicitHeight + Config.menuPadding  * 2
+        implicitWidth: trayIcon.implicitWidth + Config.menuPadding * 2
+        implicitHeight: trayIcon.implicitHeight + Config.menuPadding * 2
 
         TextTooltip {
             id: tooltip
@@ -51,20 +51,6 @@ MouseArea {
             mipmap: true
             source: root.modelData.icon
             implicitSize: Config.barIconSize
-
-            Component.onCompleted: Qt.callLater(function () {
-                root.position = Qt.binding(function () {
-                    let p = mapToGlobal(x, y);
-                    p.x += implicitSize / 4;
-                    p.y += implicitSize / 4;
-                    let m = Config.preferredMonitor;
-                    if (m && m.name != "eDP-1") {
-                        p.x -= m.x;
-                        p.y -= m.y;
-                    }
-                    return p;
-                });
-            })
         }
     }
 
@@ -82,6 +68,8 @@ MouseArea {
             break;
         case Qt.RightButton:
             if (modelData.hasMenu) {
+                root.position = mapToGlobal(event.x, event.y)
+                root.position.y += Config.barHeight / 2
                 menu.visible = !menu.visible;
             }
             break;

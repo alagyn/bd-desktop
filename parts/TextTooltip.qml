@@ -23,7 +23,7 @@ Loader {
         delay: 500
 
         x: parent.x + parent.width / 2 - width / 2
-        y: parent.y + parent.height + Config.padding
+        y: parent.y + parent.height + Config.menuPadding
 
         contentItem: Text {
             text: tooltip.text
@@ -32,9 +32,9 @@ Loader {
         }
 
         background: Squircle {
-            color: Colors.bgBlur
+            color: Colors.bgPrimary
             strokeWidth: 1
-            strokeColor: Colors.border
+            strokeColor: Colors.bgSecondary
             useInnerStroke: true
         }
     }
