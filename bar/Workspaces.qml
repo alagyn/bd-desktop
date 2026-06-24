@@ -1,10 +1,8 @@
 import QtQuick
-import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Hyprland
 import Quickshell.Widgets
-import qs
 
 WrapperMouseArea {
     id: root
@@ -39,7 +37,7 @@ WrapperMouseArea {
     }
 
     Row {
-        spacing: height / 7
+        spacing: 7
 
         Repeater {
             id: repeater
@@ -58,82 +56,7 @@ WrapperMouseArea {
                 }
             }
 
-            Rectangle {
-                color: "transparent"
-                required property var modelData
-
-                implicitHeight: parent.height
-                implicitWidth: {
-                    if (modelData.workspace?.focused ?? false) {
-                        return parent.height;
-                    }
-                    return parent.height * 0.3;
-                }
-
-                Behavior on implicitWidth {
-                    NumberAnimation {
-                        duration: 325
-                        easing.type: Easing.OutQuint
-                    }
-                }
-
-                WrapperMouseArea {
-                    id: ws
-                    property var modelData: parent.modelData
-                    anchors {
-                        fill: parent
-                        margins: {
-                            if (ws.modelData.workspace?.focused ?? false) {
-                                return parent.height * 0.3;
-                            }
-                            return parent.height * 0.35;
-                        }
-                        leftMargin: 0
-                        rightMargin: 0
-
-                        Behavior on margins {
-                            NumberAnimation {
-                                duration: 325
-                                easing.type: Easing.OutQuint
-                            }
-                        }
-                    }
-
-                    onPressed: Hyprland.dispatch(`hl.dsp.focus({workspace = ${modelData.index}})`)
-
-                    Item {
-                        anchors.fill: parent
-
-                        Rectangle {
-                            id: wsRect
-                            radius: height / 2
-
-                            anchors.fill: parent
-
-                            Behavior on color {
-                                ColorAnimation {
-                                    duration: 325
-                                    easing.type: Easing.OutQuint
-                                }
-                            }
-                            color: {
-                                ws.modelData.workspace ??
-                                    false
-                                ?
-                                Colors.highlight : Colors.bgSecondary;
-                            }
-                        }
-                        // MultiEffect {
-                        //     source: wsRect
-                        //     anchors.fill: wsRect
-                        //     shadowEnabled: Config.shadowEnabled
-                        //     shadowVerticalOffset: Config.shadowVerticalOffset
-                        //     blurMax: Config.blurMax
-                        //     opacity: Config.shadowOpacity
-                        // }
-                    }
-                }
-            }
+            Workspace {}
         }
     }
 }
