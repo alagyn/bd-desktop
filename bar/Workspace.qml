@@ -41,21 +41,30 @@ WrapperMouseArea {
             }
             implicitWidth: {
                 if (root.modelData.workspace?.focused ?? false) {
-                    return Config.barIconSize * 1.3;
+                    return Config.barIconSize * 1.3 * Math.max(rep.model.length, 1);
                 }
-                return Config.barIconSize;
+                return Config.barIconSize * Math.max(rep.model.length, 1);
             }
             // implicitWidth: windowIcon.implicitWidth + 8
             // implicitHeight: windowIcon.implicitHeight + 8
 
-            Icon {
-                id: windowIcon
+            Row {
                 anchors.centerIn: parent
-                source: AppSearch.findIconForWorkspace(root.modelData.index)
-                visible: source !== undefined
+                spacing: 5
+                Repeater {
+                    id: rep
+                    model: AppSearch.findIconsForWorkspace(root.modelData.index)   
+            
+                    Icon {
+                        required property var modelData
+                        // anchors.centerIn: parent
+                        source: modelData 
+                        visible: source !== undefined
 
-                implicitHeight: root.modelData.workspace?.focused ? Config.barIconSize : Config.barIconSize - 10
-                implicitWidth: root.modelData.workspace?.focused ? Config.barIconSize : Config.barIconSize - 10
+                        implicitHeight: root.modelData.workspace?.focused ? Config.barIconSize : Config.barIconSize - 10
+                        implicitWidth: root.modelData.workspace?.focused ? Config.barIconSize : Config.barIconSize - 10
+                    }
+                }
             }
 
             Behavior on color {

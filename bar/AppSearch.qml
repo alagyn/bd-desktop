@@ -11,13 +11,17 @@ Singleton {
     property var windowList: []
     // property var addresses: []
     // property var windowByAddress: ({})
-    function biggestWindowForWorkspace(workspaceId) {
+    function getWindowsForWorkspace(workspaceId) {
         const windowsInThisWorkspace = windowList.filter(w => w.workspace.id == workspaceId);
-        return windowsInThisWorkspace.reduce((maxWin, win) => {
-            const maxArea = (maxWin?.size?.[0] ?? 0) * (maxWin?.size?.[1] ?? 0);
-            const winArea = (win?.size?.[0] ?? 0) * (win?.size?.[1] ?? 0);
-            return winArea > maxArea ? win : maxWin;
-        }, null);
+        if (windowsInThisWorkspace.length == 0)
+        {
+            return []
+        }
+        windowsInThisWorkspace.sort((a, b) => {
+            return a.at[0] - b.at[0]
+        })
+
+        return windowsInThisWorkspace;
     }
     function findIcon(window) {
         if (window=== undefined) {
@@ -48,14 +52,11 @@ Singleton {
         return undefined;
     }
 
-    function findIconForWorkspace(workspaceId) {
-        var win = biggestWindowForWorkspace(workspaceId);
-        // console.log(win)
-        if (win !== null) {
-            // console.log(JSON.stringify(win))
-            return Quickshell.iconPath(AppSearch.findIcon(win), "image-missing");
-        }
-        return undefined;
+    function findIconsForWorkspace(workspaceId) {
+        var wins = getWindowsForWorkspace(workspaceId);
+
+        var out = wins.map((win) => Quickshell.iconPath(AppSearch.findIcon(win), "image-missing"))
+        return out;
     }
     Connections {
         target: Hyprland
