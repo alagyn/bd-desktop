@@ -19,14 +19,32 @@ Singleton {
             return winArea > maxArea ? win : maxWin;
         }, null);
     }
-    function findIcon(name) {
-        if (name === undefined) {
+    function findIcon(window) {
+        if (window=== undefined) {
             return undefined;
         }
-        var entry = DesktopEntries.byId(name);
-        if (entry) {
-            return entry.icon;
+
+        const values = [window.class, window.initialClass, window.initialTitle]
+
+        for(var i = 0; i < values.length; i++)
+        {
+            var entry = DesktopEntries.byId(values[i]);
+            if (entry) {
+                return entry.icon;
+            }
         }
+
+        for(var i = 0; i < DesktopEntries.applications.values.length; i++)
+        {
+            const entry = DesktopEntries.applications.values[i];
+            if(entry.startupClass == window.initialClass)
+            {
+                return entry.icon;
+            }
+        }
+
+        // console.log(JSON.stringify(window))
+
         return undefined;
     }
 
@@ -34,7 +52,8 @@ Singleton {
         var win = biggestWindowForWorkspace(workspaceId);
         // console.log(win)
         if (win !== null) {
-            return Quickshell.iconPath(AppSearch.findIcon(win?.class), "image-missing");
+            // console.log(JSON.stringify(win))
+            return Quickshell.iconPath(AppSearch.findIcon(win), "image-missing");
         }
         return undefined;
     }

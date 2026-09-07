@@ -40,6 +40,7 @@ Scope {
                     leftMargin: Config.barGroupEdgeOffset
                 }
                 Bluetooth {}
+                Audio {}
                 Network {}
             }
             // Center
