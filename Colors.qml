@@ -28,4 +28,5 @@ Singleton {
     readonly property color fgDark: Qt.rgba(0, 0, 0, 1)
 
     readonly property real barInnerMargin: 20
-}
+
+    }

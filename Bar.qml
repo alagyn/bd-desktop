@@ -64,7 +64,9 @@ Scope {
                     top: parent.top
                     rightMargin: Config.barGroupEdgeOffset
                 }
-                // TODO Brightness/Volume
+                // TODO Brightness
+                MemUsage {}
+                CPUUsage {}
                 Tray {}
                 Battery {}
                 Clock {}

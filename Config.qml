@@ -22,7 +22,7 @@ PersistentProperties {
     readonly property int barWidgetSpacing: 10
     readonly property int barIconSize: 32
     readonly property int barRadius: barHeight / 2
-    readonly property int barGroupHeight: barHeight - 10
+    readonly property int barGroupHeight: barHeight - 8
     readonly property int barGroupRadius: barGroupHeight / 2
 
     readonly property int barGroupEdgeOffset: (Config.barHeight - Config.barGroupHeight) / 2
