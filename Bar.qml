@@ -66,6 +66,7 @@ Scope {
                 }
                 // TODO Brightness
                 MemUsage {}
+                CPUTemp {}
                 CPUUsage {}
                 Tray {}
                 Battery {}

@@ -24,6 +24,7 @@ PersistentProperties {
     readonly property int barRadius: barHeight / 2
     readonly property int barGroupHeight: barHeight - 8
     readonly property int barGroupRadius: barGroupHeight / 2
+    readonly property int barChartRadius: 4
 
     readonly property int barGroupEdgeOffset: (Config.barHeight - Config.barGroupHeight) / 2
 
@@ -36,4 +37,6 @@ PersistentProperties {
             return Qt.resolvedUrl(image);
         return Quickshell.iconPath(image);
     }
+
+    readonly property real maxCpuTemp: 90
 }

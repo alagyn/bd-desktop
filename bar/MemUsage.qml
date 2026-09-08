@@ -1,16 +1,26 @@
 pragma ComponentBehavior: Bound
 
 import QtQuick
-import QtQuick.Layouts
 import qs
+import qs.parts
 
 BarGroup {
     id: root
 
-    Text {
-        anchors.centerIn: parent
+    radius: Config.barChartRadius
+    
+    BarChart {
+        id: chart
+        model: ResourceState.mem_percent
+        colorFunc: (index) => {
+            return "#9ED8DB"
+        }
+    }
 
-        color: Colors.fgLight
-        text: `Mem: ${ResourceState.mem_percent}%`
+    Connections {
+        target: ResourceState
+        function onMem_percentChanged() {
+            chart.modelChanged()
+        }
     }
 }
