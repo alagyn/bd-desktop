@@ -10,15 +10,26 @@ BarGroup {
     radius: Config.barChartRadius
 
     readonly property var colors: [
-        "#721817",
-        "#fa9f42",
-        "#2b4162",
-        "#e0e0e2"
+        Qt.rgba(0.016, 1.000, 0.000, 1.000),
+        Qt.rgba(0.000, 1.000, 0.984, 1.000),
+        Qt.rgba(0.984, 0.000, 1.000, 1.000),
+        Qt.rgba(1.000, 0.000, 0.016, 1.000)
     ]
     
     BarChart {
+        id: chart
+        anchors.centerIn: parent
         model: ResourceState.cpu_percent
-        colorFunc: (index) => root.colors[index % root.colors.length]
+        colorFunc: (index) => {
+            return Colors.multi_lerp(colors, index / (ResourceState.cpu_percent.length - 1))
+        }
+    }
+
+    Connections {
+        target: ResourceState
+        function onCpu_percentChanged() {
+            chart.modelChanged()
+        }
     }
 
     // RowLayout {

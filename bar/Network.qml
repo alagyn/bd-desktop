@@ -4,7 +4,6 @@ import Quickshell
 import Quickshell.Io
 import QtQuick.Layouts
 import qs
-import qs.parts
 
 BarGroup {
     id: root

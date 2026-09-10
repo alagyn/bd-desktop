@@ -29,4 +29,41 @@ Singleton {
 
     readonly property real barInnerMargin: 20
 
+    function multi_lerp(colors, t)
+    {
+        var idx = Math.floor(t * (colors.length - 1))
+        if (idx == colors.length - 1)
+        {
+            idx -= 1
+        }
+        const chunk = 1 / colors.length
+        const trueMin = idx * chunk
+        const trueMax = trueMin + chunk
+        const trueT = (t - trueMin) / (trueMax - trueMin)
+        
+        const c1 = colors[idx]
+        const c2 = colors[idx + 1]
+
+        if (c1 === undefined || c2 === undefined)
+        {
+            return "white"
+        }
+
+        return hsv_lerp(c1, c2, trueT)
     }
+
+    function hsv_lerp(c1, c2, t)
+    {
+        const h = lerp(c1.hsvHue, c2.hsvHue, t)
+        const s = lerp(c1.hsvSaturation, c2.hsvSaturation, t)
+        const v = lerp(c1.hsvValue, c2.hsvValue, t)
+
+        return Qt.hsva(h, s, v, 1)
+    }
+
+    function lerp(a, b, t)
+    {
+        return (b - a) * t + a
+    }
+
+}

@@ -7,17 +7,18 @@ import qs
 
 RowLayout {
     id: root
-    anchors.centerIn: parent
+    // anchors.centerIn: parent
     spacing: 3
 
     required property var model
     required property var colorFunc
 
-
     Repeater {
         id: rep
+        // model: ScriptModel {
+        //     values: root.model
+        // }
         model: root.model
-
         Rectangle {
             required property var modelData
             required property int index
@@ -28,7 +29,7 @@ RowLayout {
             color: "transparent"
 
             Rectangle {
-                color: root.colorFunc(parent.index)
+                color: root.colorFunc(parent.index, parent.modelData)
                 implicitHeight: Config.barIconSize * parent.modelData
                 implicitWidth: 5
 

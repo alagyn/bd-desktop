@@ -38,5 +38,5 @@ PersistentProperties {
         return Quickshell.iconPath(image);
     }
 
-    readonly property real maxCpuTemp: 90
+    readonly property real maxCpuTemp: 100
 }
