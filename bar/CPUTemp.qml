@@ -19,7 +19,7 @@ BarGroup {
             colorFunc: (index, value) => {
                 if (value < 0.5)
                 {
-                    return "#23FF00"
+                    return "#70FF5A"
                 }
                 else if(value < 0.75)
                 {
