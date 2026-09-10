@@ -7,7 +7,7 @@ import QtQuick
 Singleton {
     id: root
 
-    readonly property int num_samples: 20
+    readonly property int num_samples: 15
     
     property var cpu_percent: []
     readonly property var mem_percent: Array(num_samples).fill(0)

@@ -16,7 +16,8 @@ Singleton {
     */
     // , #d1495b, #c0d8e0
     readonly property color bgPrimary: "#003D5B"
-    readonly property color bgSecondary: "#30638e"
+    // readonly property color bgSecondary: "#30638e"
+    readonly property color bgSecondary: "#596169"
     readonly property color highlight: "#edae49"
     
     /*

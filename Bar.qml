@@ -42,6 +42,7 @@ Scope {
                 Bluetooth {}
                 Audio {}
                 Network {}
+                Tray {}
             }
             // Center
             RowLayout {
@@ -68,7 +69,6 @@ Scope {
                 MemUsage {}
                 CPUTemp {}
                 CPUUsage {}
-                Tray {}
                 Battery {}
                 Clock {}
             }
