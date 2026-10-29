@@ -2,6 +2,7 @@ pragma ComponentBehavior: Bound
 
 import Quickshell.Services.SystemTray
 import Quickshell.Widgets
+import Quickshell
 import QtQuick
 
 import qs
@@ -60,7 +61,6 @@ MouseArea {
 
     onEntered: tooltip.show = true
     onExited: tooltip.show = false
-
     onClicked: event => {
         switch (event.button) {
         case Qt.LeftButton:

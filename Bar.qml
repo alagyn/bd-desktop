@@ -8,6 +8,7 @@ import qs.bar
 
 Scope {
     PanelWindow {
+        id: panel
         WlrLayershell.namespace: "quickshell:bar"
         screen: Config.preferredMonitor
         color: "transparent"
@@ -41,6 +42,9 @@ Scope {
                 }
                 Bluetooth {}
                 Audio {}
+                SleepBlock {
+                    window: panel
+                }
                 Network {}
                 Tray {}
             }
